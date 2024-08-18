@@ -1,10 +1,20 @@
-import { Routes } from '@angular/router';
-import { AuthorizationPageComponent } from './pages/authorization-page/authorization-page.component';
-import { DeviceListComponent } from './device-list/device-list/device-list.component';
-import { canActivateAuth } from './auth/access.guard';
+import {Routes} from '@angular/router';
+import {LoginPageComponent} from './pages/login-page/login-page.component';
+import {DevicesPageComponent} from './pages/devices-page/devices-page.component';
+import {canActivateAuth} from './auth/guards/auth.guard';
+import {ContentLayoutComponent} from "./layout/content-layout/content-layout.component";
+import {canActivateNotAuth} from "./auth/guards/not-auth.guard";
 
 export const routes: Routes = [
-  { path: 'login', component: AuthorizationPageComponent },
-  { path: 'devices', component: DeviceListComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  {
+    path: '', component: ContentLayoutComponent, children: [
+      {path: '', redirectTo: '/devices', pathMatch: 'full'},
+      {
+        path: 'devices',
+        component: DevicesPageComponent,
+        canActivate: [canActivateAuth],
+      },
+    ],
+  },
+  {path: 'login', component: LoginPageComponent, canActivate: [canActivateNotAuth]},
 ];

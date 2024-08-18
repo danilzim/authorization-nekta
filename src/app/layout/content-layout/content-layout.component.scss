@@ -1,0 +1,22 @@
+:host {
+    display: block;
+  }
+  
+  .content-container {
+    margin: 0 auto;
+    max-width: 1024px;
+    padding: 32px;
+    width: 100%;
+  }
+  
+  .header {
+    padding: 16px;
+    background-color: #d7e3ff;
+    color: #005cbb;
+  
+    .logout-button {
+      display: block;
+      margin-left: auto;
+    }
+  }
+  

@@ -1,0 +1,23 @@
+<div class="login-form-container">
+  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="title">Вход в систему</div>
+    <mat-form-field class="login-form-field">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput [formControl]="emailFormControl" placeholder="email@gmail.com">
+      @if (emailFormControl.hasError('required')) {
+      <mat-error>Email обязательное поле</mat-error>
+      }
+      @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+      <mat-error>Некорректный формат email</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="login-form-field">
+      <mat-label>Пароль</mat-label>
+      <input type="password" matInput [formControl]="passwordFormControl">
+      @if (passwordFormControl.hasError('required')) {
+      <mat-error>Пароль обязательное поле</mat-error>
+      }
+    </mat-form-field>
+    <button class="login-button" mat-flat-button color="primary" type="submit">Войти</button>
+  </form>
+</div>
